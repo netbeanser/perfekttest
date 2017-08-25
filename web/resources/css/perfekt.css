@@ -1,0 +1,68 @@
+/* 
+    Created on : Aug 20, 2017, 5:22:46 PM
+    Author     : dglunts
+*/
+body {
+
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;   
+    border-bottom: 1px solid blue;
+    border-right: 1px solid blue; 
+    border-top: 1px solid blue;     
+}
+
+table {
+    background-color: lightgrey;    
+    border: 1px solid blue;
+    border-collapse: collapse;    
+        
+}
+
+p.error {
+    text-align: center;
+    color: red;  
+    font-weight: bold;    
+}
+p.message {
+    text-align: center;  
+    font-weight: bold;    
+}
+
+.evenrow
+{
+   background-color: white;
+   color: black;
+}
+.oddrow
+{
+   background-color: lightgray; 
+   color: black;
+}
+
+tr {
+    tr:nth-child(even) {background-color: #f2f2f2}    
+}
+
+td.book 
+{
+    border-bottom: 1px solid blue;
+    border-right: 1px solid blue;    
+}  
+
+#console {
+    background-color: lighgrey;
+    border: 1px solid #CCCCCC;
+    border-right-color: #999999;
+    border-bottom-color: #999999;
+    height: 100px;
+    overflow-y: scroll;
+    padding: 5px;
+    width: 50%;
+}
+
+
+

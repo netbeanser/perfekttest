@@ -1,0 +1,45 @@
+package perfekttest.repo;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
+
+import perfekttest.model.Book;
+
+import java.util.List;
+
+/**
+ *
+ * @author dglunts
+ */
+@Repository
+public interface BookRepository extends JpaRepository<Book, Long> {    
+    
+    static final String BOOK_SELECT = 
+        "SELECT b.author,b.title,i.imgpath,f.user_id "
+        +"FROM book b LEFT OUTER JOIN favorites f ON b.id=f.book_id "
+        +"JOIN img i ON b.img_id=i.id "
+        +"LEFT OUTER JOIN users u on u.id=f.user_id";
+    
+    @Query(value="INSERT INTO BOOK (author,title,img_id) "+
+        "VALUES(:author,:title,:img_id)"+
+        " ON CONFLICT (name) DO UPDATE SET "+
+        "lastpublished = EXCLUDED.lastpublished",
+        nativeQuery=true )
+    @Modifying(clearAutomatically=false)
+    @Transactional        
+    public void safeInsertBook(@Param("author") String author,
+        @Param("title") String title,
+        @Param("img_id") Integer img_id);  
+
+    
+    @Query(value=BOOK_SELECT,nativeQuery=true)
+    public List<Object[]> getBookImgListAll();
+    
+    @Query(value=BOOK_SELECT + " WHERE u.username=:username",nativeQuery=true)
+    public List<Object[]> getBookImgListFav(@Param("username") String username);
+    
+}
