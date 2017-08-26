@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {    
     
-    /* This query uses CTE (Common Table Expression) name fav */
+    /* This query uses CTE (Common Table Expression) named fav */
     static final String BOOK_SELECT = 
     "WITH fav AS ("
         +"SELECT "
@@ -41,8 +41,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     +"JOIN img i ON i.id=b.img_id "
     +"LEFT OUTER JOIN fav "
     +"ON "
-       +"fav.book_id=b.id";
-              
+       +"fav.book_id=b.id ";
+             
     @Query(value="INSERT INTO BOOK (author,title,img_id) "+
         "VALUES(:author,:title,:img_id)"+
         " ON CONFLICT (name) DO NOTHINGT",
@@ -60,14 +60,24 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query(value=BOOK_SELECT + " WHERE fav.user_id IS NOT NULL ",nativeQuery=true)
     public List<Object[]> getBookAuxListFav(@Param("username") String username);
     
-    @Query(value=BOOK_SELECT + " OFFSET :offset LIMIT 10",
+    @Query(value=BOOK_SELECT + "ORDER By b.id"
+            +" OFFSET :offset LIMIT 10", //10 records per page
             nativeQuery=true)
     public List<Object[]> getBookAuxListAllRange10(@Param("username") String username,
             @Param("offset") Integer offset);
     
     @Query(value=BOOK_SELECT + " WHERE fav.user_id IS NOT NULL "
-            +" OFFSET :offset LIMIT 10",nativeQuery=true)
+            +" ORDER BY b.id "
+            +" OFFSET :offset LIMIT 10",
+            nativeQuery=true)
     public List<Object[]> getBookAuxListFavRange10(@Param("username") String username,
             @Param("offset") Integer offset);
     
+    
+    @Query(value="SELECT count(*) FROM favorites f "
+    +"WHERE f.user_id="
+    +"(SELECT id FROM users "
+    +"WHERE username=:username)",
+            nativeQuery=true)
+    public Integer getFavCount(@Param("username") String username);
 }

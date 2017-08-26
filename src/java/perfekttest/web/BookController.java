@@ -42,7 +42,7 @@ public class BookController {
         or more table  joins,
         returns an Object[], or a List thereof.
         Not an Entity. 
-        So wee need to 1) know exactly the structure of return data
+        So we need to 1) know exactly the structure of returned data
         and 2)generate List of objects of known structure.
         This is where the auxilliary class BookAux comes into play
         We will use List<BookAux> in jsp page
@@ -136,7 +136,7 @@ public class BookController {
             model.addAttribute("username", username);
             model.addAttribute("logged_in_user_id", user.getId());
             model.addAttribute("fav", 1);    
-            model.addAttribute("totalRows",bookRepository.count());
+            model.addAttribute("totalRows",bookRepository.getFavCount(username));
             
         }
         return "books";

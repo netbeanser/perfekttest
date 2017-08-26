@@ -45,11 +45,11 @@
             <table>
                 <tr>
                     <td>User Name :</td>
-                    <td><input type="text" name="username" id=username"/></td>
+                    <td><input type="text" name="username" id=username" tabindex="1"/></td>
                 </tr>
                 <tr>
                     <td>Password :</td>
-                    <td><input type="password" name="password" id="password" /></td>
+                    <td><input type="password" name="password" id="password" tabindex="2"/></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Login"/></td>

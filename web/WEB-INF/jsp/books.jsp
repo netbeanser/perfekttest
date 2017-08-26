@@ -21,7 +21,8 @@
               
         <title>Book List</title>
     </head>
-    <body onload="booksPageLoaded()" onunload="booksPageUnloaded()">
+    <body onload="booksPageLoaded(<c:out value='${totalRows}' />)" 
+          onunload="booksPageUnloaded()">
         <a href="<c:url value="/logout" />">Logout</a>
         <h3>Что,<c:out value="${username}"/>, тебя читать научили? И когда успели!</h3>
         <table>
@@ -63,11 +64,14 @@
                 </td>
                         </tr>
             </c:forEach>
-        </table>
-        <button id="prev" name="prev" onclick="prevClicked(this,
-                    <c:out value='${totalRows}' />)">&lt;&lt;</button>
-        <button id="next" name="next" onclick="nextClicked(this,
-                    <c:out value='${totalRows}' />)">&gt;&gt;</button>
+        </table> 
+        
+        <button id="prev" onclick="prevNext(-10,
+                <c:out value='${totalRows}' />);">&lt;&lt;</button>        
+        <button id="next" onclick="prevNext(10,
+                <c:out value='${totalRows}' />);">&gt;&gt;</button>
+
+        
         <c:choose>
             <c:when test="${fav eq null}">
                 <button onclick='window.location.href="<c:url value='/books/fav?offset=0'/>"'>Show your favorites</button>

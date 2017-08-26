@@ -1,7 +1,38 @@
 var wsClient = null;
 var offset = 0;
 
-function booksPageLoaded(){
+function getOffsetParam(){
+    var param = window.location.search.split('=')[1];
+    if (param === null) return 0;
+    var offs = parseInt(param);
+    if (isNaN(offs)){
+//        offset=0;
+        return 0;
+    } else {
+//        offset=offs;
+        return offs;
+    }  
+
+//    return offset;
+}
+
+function booksPageLoaded(totalRows){
+
+    offs = getOffsetParam();  
+    
+    if (offs === 0){
+        document.getElementById("prev").disabled=true; 
+        document.getElementById("next").disabled=false;             
+    } 
+    if ((offs + 10) >= totalRows){ //max 10 records per page
+        document.getElementById("prev").disabled=false; 
+        document.getElementById("next").disabled=true;            
+    }
+    
+    if (totalRows <= 10){ //max 10 records per page
+        document.getElementById("prev").disabled=true; 
+        document.getElementById("next").disabled=true;         
+    }    
     
     if ('WebSocket' in window){
         wsClient = new WebSocket("ws://localhost:8080/perfekt/favchange");
@@ -112,6 +143,7 @@ function log(message) {
 
 //Tese two functions serve books.jsp
 function nextClicked(obj,totalRows){
+    if ((offset + 10) > totalRows) return;
     offset+=10;
     if (offset >= totalRows){
         document.getElementById("next").disabled=true;        
@@ -127,16 +159,36 @@ function nextClicked(obj,totalRows){
 }
 
 function prevClicked(obj,totalRows){
-    offset-=10;
+    if ((offset - 10) <0) { offset = 0 ;}
+    else {
+        offset-=10;
+    }
     if (offset <= 0){
         document.getElementById("prev").disabled=true;        
     } else {
         document.getElementById("prev").disabled=false;                
     } 
     document.getElementById("next").disabled=false;
+    
     var url = "http://"+window.location.host
     +window.location.pathname
     +"?offset="+offset;
     window.location.href=url;
 }
 
+function prevNext(dir,totalRows){
+    var offs = getOffsetParam();
+    var m = parseInt(dir);
+    if (isNaN(m)) return;
+    if (m>=0) m=1; else m=-1;
+    var newOffs = offs+m*10;
+
+    if (newOffs <=0){
+        NewOffs = 0;
+    } else if (newOffs >= totalRows) return;
+    
+    var url = "http://"+window.location.host
+    +window.location.pathname
+    +"?offset="+newOffs;
+    window.location.href=url;    
+}
