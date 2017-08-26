@@ -226,32 +226,34 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 COPY book (id, author, title, img_id) FROM stdin;
-1	Armin Fuchs	Non-linear Dynamics in Complex Systems	1
-5	Burton Zwiebach	A First Course in String Theory	5
-9	jobs@perfekt.software	Java EE Web Application	9
-13	David Deutsh	The Fabric of Reality	17
-17	Lean-Pierre Serre	Lee Algebras and Lee Groups	21
-21	Joshua Bloch	Effective Java	25
-29	Craig Walles	Spring Boot in Action	29
-33	Питер Олвер	Применение групп Ли к дифференциальным уравнениям	1
-41	Эдуардо Керлот	Словарь символов	33
-45	Жак ЛеГофф	Рождение Чистилища	37
-49	Мишель Фуко	История безумия в классическу эпоху	41
-53	Кон-Винер	История стилей изобразительного тскусства	45
-57	Brian Goetz	Java Concurrency in Practice	49
-61	Corbet,Rubini,Hartman	Linux Device Drivers	1
-69	Роджер Пенроуз	Тени разума	13
-73	Уильям Моррис	Основания теории знаков	13
-81	Русский народ	Похождения Штирлица	53
-77	В.Успенский	Теорема Геделя о неполноте	13
-85	Hows, Membry,Hawkins	The Definitive guide to MongoDb	57
-89	Ирина Пигулевская	Мифы и боги древних славян	61
-97	Жак Маржерет	Состояние Российской Империи	65
-101	Александр Морэ	Египетские Мистерии	77
-105	Владимир Булдаков	Утопия,агрессиябвласть	81
-109	Самюэль Хаттингтон	Столкновение цивилизаций	69
-113	Платон	Государстао	73
-121	Игорь Губерман	Рогулки вокруг барака	85
+369	Armin Fuchs	Non-linear Dynamics in Complex Systems	1
+373	Burton Zwiebach	A First Course in String Theory	5
+377	jobs@perfekt.software	Java EE Web Application	9
+381	David Deutsh	The Fabric of Reality	17
+385	Lean-Pierre Serre	Lee Algebras and Lee Groups	21
+389	Joshua Bloch	Effective Java	25
+393	Craig Walles	Spring Boot in Action	29
+397	Питер Олвер	Применение групп Ли к дифференциальным уравнениям	1
+401	Эдуардо Керлот	Словарь символов	33
+405	Жак ЛеГофф	Рождение Чистилища	37
+409	Мишель Фуко	История безумия в классическую эпоху	41
+413	Кон-Винер	История стилей изобразительного искусства	45
+417	Brian Goetz	Java Concurrency in Practice	49
+421	Corbet Rubini Hartman	Linux Device Drivers	1
+425	Роджер Пенроуз	Тени разума	13
+429	Уильям Моррис	Основания теории знаков	13
+433	Русский Народ	Похождения Штирлица	53
+437	В.Успенский	Теорема Геделя о неполноте	13
+445	Ирина Пигулевская	Мифы и боги древних славян	61
+449	Жак Маржерет	Состояние Российской Империи	65
+453	Александр Морэ	Египетские Мистерии	77
+461	Самюэль Хаттингтон	Столкновение цивилизаций	69
+465	Платон	Государство	73
+469	Игорь Губерман	Прогулки вокруг барака	85
+473	Линн Виссон	Русские проблемы в английской речи	93
+441	Hows,Membry,Hawkins	The Definitive guide to MongoDb	57
+477	Н.Московцев,С.Шевченко	Вашу мать,сэр!	97
+457	Владимир Булдаков	Утопия,агрессия,власть	81
 \.
 
 
@@ -259,7 +261,7 @@ COPY book (id, author, title, img_id) FROM stdin;
 -- Name: book_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dglunts
 --
 
-SELECT pg_catalog.setval('book_id_seq', 121, true);
+SELECT pg_catalog.setval('book_id_seq', 477, true);
 
 
 --
@@ -267,33 +269,6 @@ SELECT pg_catalog.setval('book_id_seq', 121, true);
 --
 
 COPY favorites (user_id, book_id) FROM stdin;
-5	1
-5	13
-9	5
-9	29
-9	17
-9	41
-9	45
-5	81
-9	81
-9	77
-5	61
-1	61
-33	41
-33	29
-33	45
-17	17
-17	1
-17	49
-13	29
-13	77
-13	33
-17	61
-37	49
-37	61
-37	17
-13	5
-13	81
 \.
 
 
@@ -313,6 +288,8 @@ COPY img (id, imgpath) FROM stdin;
 77	/resources/img/Egypt.png
 81	/resources/img/Buld.png
 85	/resources/img/Guber.png
+93	/resources/img/Linn.png
+97	/resources/img/YourMother.png
 29	/resources/img/SpringInAction.png
 41	/resources/img/Mad.png
 37	/resources/img/LeGoff.png
@@ -331,7 +308,7 @@ COPY img (id, imgpath) FROM stdin;
 -- Name: img_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dglunts
 --
 
-SELECT pg_catalog.setval('img_id_seq', 85, true);
+SELECT pg_catalog.setval('img_id_seq', 97, true);
 
 
 --
