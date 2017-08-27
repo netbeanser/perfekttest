@@ -51,6 +51,7 @@ public class UserController {
     @RequestMapping(value="/registration", method = RequestMethod.POST)
     public String addUser (@RequestParam("username") String username,
             @RequestParam("password") String password,
+            @RequestParam("email") String email,
             Model model){
         
         User user = userRepository.findByUsername(username);
@@ -70,6 +71,7 @@ public class UserController {
         user = new User();
         user.setUsername(username);
         user.setPassword(md5PasswordEncoder.encodePassword(password, null));
+        user.setEmail(email);
 
         Role role = roleRepository.findByName("ROLE_USER");       
         role.getUserList().add(user);

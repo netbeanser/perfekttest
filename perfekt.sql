@@ -166,7 +166,8 @@ ALTER TABLE user_role OWNER TO dglunts;
 CREATE TABLE users (
     id bigint NOT NULL,
     username character varying(32),
-    password character varying(255)
+    password character varying(255),
+    email character varying(64) DEFAULT 'jobs@perfekt.software'::character varying
 );
 
 
@@ -347,14 +348,14 @@ COPY user_role (user_id, role_id) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: dglunts
 --
 
-COPY users (id, username, password) FROM stdin;
-1	admin	21232f297a57a5a743894a0e4a801fc3
-5	Petya	7e102b51b4a538a84689c35b9818a39e
-9	Masha	68c52c49d8983edeb5a488b3812ce678
-13	Vasya	96932f68a34ac08a6c92ed8db20d2ee3
-17	Dunya	a50370f2b57fb982e42513ad3bb69aa0
-33	Manya	29e6e526b4a635ab63b50b119e6e75ff
-37	Anfisa	9a1467c03f6d81c977cd2c4d4380a78f
+COPY users (id, username, password, email) FROM stdin;
+1	admin	21232f297a57a5a743894a0e4a801fc3	jobs@perfekt.software
+5	Petya	7e102b51b4a538a84689c35b9818a39e	jobs@perfekt.software
+9	Masha	68c52c49d8983edeb5a488b3812ce678	jobs@perfekt.software
+13	Vasya	96932f68a34ac08a6c92ed8db20d2ee3	jobs@perfekt.software
+17	Dunya	a50370f2b57fb982e42513ad3bb69aa0	jobs@perfekt.software
+33	Manya	29e6e526b4a635ab63b50b119e6e75ff	jobs@perfekt.software
+37	Anfisa	9a1467c03f6d81c977cd2c4d4380a78f	jobs@perfekt.software
 \.
 
 

@@ -6,8 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%--
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+--%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +43,10 @@
                     <td>Password :</td>
                     <td><input type="password" name="password" id="password" /></td>
                 </tr>
+                <tr>
+                    <td>Email :</td>
+                    <td><input type="text" name="email" id="email" /></td>
+                </tr>                
                 <tr>
                     <td colspan="2"><input type="submit" value="Create new account"/></td>
                 </tr>
