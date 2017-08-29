@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import perfekttest.model.Role;
+//import perfekttest.model.User;
 import perfekttest.repo.UserRepository;
 
 @Service
@@ -50,6 +51,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         new org.springframework.security.core.userdetails.User(modelUser.getUsername(), modelUser.getPassword(), grantedAuthorities);        
         
         logger.info("authUser: " + authUser.toString());
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
         return authUser;
     }
 }
